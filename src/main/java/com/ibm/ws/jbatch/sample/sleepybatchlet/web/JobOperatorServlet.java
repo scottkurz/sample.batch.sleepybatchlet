@@ -181,6 +181,7 @@ public class JobOperatorServlet extends HttpServlet {
      * @response the JobInstance + JobExecution record of the newly started job.
      */
     protected void start(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	System.out.println("stSKSK: ");
 
         String jobXMLName = getRequiredParm(request, "jobXMLName");
         Properties jobParameters = getJobParameters(request, "jobParameters");

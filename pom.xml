@@ -15,6 +15,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <liberty.jvm.opts>-Dcom.ibm.ws.jbatch.disable=true</liberty.jvm.opts>
     </properties>
     
     <dependencies>
@@ -29,9 +30,15 @@
             <groupId>jakarta.batch</groupId>
             <artifactId>jakarta.batch-api</artifactId>
             <version>1.0.2</version>
-            <scope>provided</scope>
         </dependency>
         
+        <!--
+        <dependency>
+            <groupId>org.apache.batchee</groupId>
+            <artifactId>batchee-cdi</artifactId>
+            <version>0.6</version>
+        </dependency>
+        -->
     </dependencies>
 
     <build>
