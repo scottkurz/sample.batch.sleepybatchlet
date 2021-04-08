@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.batch.operations.JobOperator;
-import javax.batch.runtime.BatchRuntime;
+import javax.batch.runtime.MyBatchRuntime;
 import javax.batch.runtime.BatchStatus;
 import javax.batch.runtime.JobExecution;
 import javax.batch.runtime.JobInstance;
@@ -146,7 +146,7 @@ public class JobOperatorServlet extends HttpServlet {
      * @return the batch JobOperator
      */
     protected JobOperator getJobOperator() {
-        return (jobOperator != null) ? jobOperator : (jobOperator = BatchRuntime.getJobOperator());
+        return (jobOperator != null) ? jobOperator : (jobOperator = MyBatchRuntime.getJobOperator());
     }
 
     /**

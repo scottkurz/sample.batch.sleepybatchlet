@@ -29,9 +29,9 @@ import javax.batch.operations.JobOperator;
  * It provides factory access to the JobOperator interface.
  *
  */
-public class BatchRuntime {
+public class MyBatchRuntime {
 
-    private final static String sourceClass = BatchRuntime.class.getName();
+    private final static String sourceClass = MyBatchRuntime.class.getName();
     private final static Logger logger = Logger.getLogger(sourceClass);
 
     // Remember we can't add anything public without affecting signature test which is part of EE compliance.
