@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 
 import javax.batch.api.AbstractBatchlet;
 import javax.batch.api.BatchProperty;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 /**
@@ -34,6 +35,7 @@ import javax.inject.Inject;
  * the default is 15 seconds.
  *
  */
+@Dependent
 public class SleepyBatchlet extends AbstractBatchlet {
 
     private final static Logger logger = Logger.getLogger(SleepyBatchlet.class.getName());

@@ -37,6 +37,19 @@
             <artifactId>batchee-jbatch</artifactId>
             <version>0.6</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.batchee</groupId>
+            <artifactId>batchee-cdi</artifactId>
+            <version>0.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
