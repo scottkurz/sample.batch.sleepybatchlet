@@ -3,11 +3,15 @@
     <featureManager>
         <feature>batchManagement-1.0</feature>
         <feature>localConnector-1.0</feature>
+        <!--  
         <feature>appSecurity-2.0</feature>
-        <feature>mpHealth-2.2</feature>
-        <feature>cdi-2.0</feature>
-        <!-- Use for validation URLs like: https://localhost:9443/ibm/api/validation/dataSource/batchDB -->
+-->
+        <!-- 
+        <feature>mpHealth-3.0</feature>
         <feature>restConnector-2.0</feature>
+ -->
+        <!-- Use for validation URLs like: https://localhost:9443/ibm/api/validation/dataSource/batchDB -->
+        <feature>cdi-2.0</feature>
     </featureManager>
 
     <httpEndpoint id="defaultHttpEndpoint"

@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 
 import javax.batch.api.AbstractBatchlet;
 import javax.batch.api.BatchProperty;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 /**
@@ -34,6 +35,8 @@ import javax.inject.Inject;
  * the default is 15 seconds.
  *
  */
+//@ApplicationScoped
+@Dependent
 public class SleepyBatchlet extends AbstractBatchlet {
 
     private final static Logger logger = Logger.getLogger(SleepyBatchlet.class.getName());
@@ -57,16 +60,22 @@ public class SleepyBatchlet extends AbstractBatchlet {
      */
     @Inject
     @BatchProperty(name = "sleep.time.seconds")
-    String sleepTimeSecondsProperty;
+    String sleepTimeSecondsProperty = "2";
     private int sleepTime_s = 15; 
 
+    @Inject
+    MyCounterBean counter;
+    
+    private int processCount = 0;
+    
     /**
      * Main entry point.
      */
     @Override
     public String process() throws Exception {
 
-        log("process", "entry");
+        log("process", "Bean cnt = " + (counter != null ? counter.getCount() : "null"));
+        log("process", "processCount = " + ++ processCount);
 
         if (sleepTimeSecondsProperty != null) {
             sleepTime_s = Integer.parseInt(sleepTimeSecondsProperty);
