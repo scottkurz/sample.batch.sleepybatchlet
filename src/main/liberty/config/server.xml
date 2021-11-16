@@ -10,8 +10,8 @@
         <feature>mpHealth-3.0</feature>
         <feature>restConnector-2.0</feature>
  -->
-        <!-- Use for validation URLs like: https://localhost:9443/ibm/api/validation/dataSource/batchDB -->
         <feature>cdi-2.0</feature>
+        <!-- Use for validation URLs like: https://localhost:9443/ibm/api/validation/dataSource/batchDB -->
     </featureManager>
 
     <httpEndpoint id="defaultHttpEndpoint"
@@ -19,7 +19,8 @@
                   httpPort="9080"
                   httpsPort="9443"/>
 
-     <logging traceSpecification="BonusPayout=finer:com.ibm.ws.batch.JobLogger=finest:com.ibm.jbatch.container.services.impl.*=all:com.ibm.ws.jbatch.*=fine:RRA=fine"/>
+     <logging traceSpecification="BonusPayout=finer:com.ibm.ws.batch.JobLogger=finest:com.ibm.jbatch.container.services.impl.*=all:com.ibm.ws.jbatch.*=fine:RRA=fine:*=info:JCDI=all:com.ibm.ws.webbeans*=all:org.apache.webbeans*=all:org.jboss.weld*=all:com.ibm.ws.cdi*=all:MetaData=all:Injection=all::com.ibm.ws.wswebcontainer*=all"/>
+     
 
    <administrator-role>
       <user>bob</user>

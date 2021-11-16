@@ -11,22 +11,22 @@ public class MyStepListener extends AbstractStepListener {
 
 	private int count = 0;
 
-	public int getCount() {
-		return ++count;
+	public void getCount() {
+		System.out.println("SKSK: in step listener , cnt = " + ++count);
 	}
 	
-    @Inject
-    MyCounterBean counter;
+    @Inject SleepyBatchlet batchlet;
     
 	@Override
 	public void beforeStep() throws Exception {
-		System.out.println("SKSK: in step listener before, cnt = " + getCount());
-		System.out.println("step listener Bean cnt = " + (counter != null ? counter.getCount() : "null"));
+		System.out.println("SKSK: in step listener before,  cnt = " + ++count);
+		batchlet.getCount();
+		System.out.println("SKSK: in step listener before,  date =   " + batchlet.getDate());
 	}
 
 	@Override
 	public void afterStep() throws Exception {
-		System.out.println("SKSK: in step listener after, cnt = " + getCount());
-		System.out.println("step listener Bean cnt = " + (counter != null ? counter.getCount() : "null"));
+		System.out.println("SKSK: in step listener after, cnt = " + ++count);
+		batchlet.getCount();
 	}
 }

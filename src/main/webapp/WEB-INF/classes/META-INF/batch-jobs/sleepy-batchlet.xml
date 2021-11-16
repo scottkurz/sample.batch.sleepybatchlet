@@ -25,9 +25,14 @@
 	    <listeners>
             <listener ref="com.ibm.ws.jbatch.sample.sleepybatchlet.MyStepListener"/>
         </listeners>
+        <!--  
 		<batchlet ref="com.ibm.ws.jbatch.sample.sleepybatchlet.SleepyBatchlet" >
+-->
+
+		<batchlet ref="SB">
             <properties>
-                <property name="sleep.time.seconds" value="1" />
+                <property name="sleep.time.seconds" value="#{jobParameters['sleep.time.seconds']}" />
+                <property name="aa" value="11" />
             </properties>
         </batchlet>
 	</step>
@@ -35,7 +40,7 @@
 	    <listeners>
             <listener ref="com.ibm.ws.jbatch.sample.sleepybatchlet.MyStepListener"/>
         </listeners>
-		<batchlet ref="com.ibm.ws.jbatch.sample.sleepybatchlet.SleepyBatchlet" >
+		<batchlet ref="SB">
             <properties>
                 <property name="sleep.time.seconds" value="2" />
             </properties>

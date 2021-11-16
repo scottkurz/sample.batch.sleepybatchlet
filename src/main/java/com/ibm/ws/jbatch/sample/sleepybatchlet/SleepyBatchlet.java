@@ -28,6 +28,7 @@ import javax.batch.api.AbstractBatchlet;
 import javax.batch.api.BatchProperty;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * This simple batchlet sleeps in 1 second increments up to "sleep.time.seconds".
@@ -37,6 +38,7 @@ import javax.inject.Inject;
  */
 //@ApplicationScoped
 @Dependent
+@Named("SB")
 public class SleepyBatchlet extends AbstractBatchlet {
 
     private final static Logger logger = Logger.getLogger(SleepyBatchlet.class.getName());
@@ -55,18 +57,28 @@ public class SleepyBatchlet extends AbstractBatchlet {
      */
     private volatile boolean stopRequested = false;
 
+    private long date;
+    
     /**
      * The total sleep time, in seconds.  
      */
     @Inject
     @BatchProperty(name = "sleep.time.seconds")
-    String sleepTimeSecondsProperty = "2";
+    String sleepTimeSecondsProperty = "7";
     private int sleepTime_s = 15; 
+
+    @Inject
+    @BatchProperty(name = "aa")
+    String aa;
 
     @Inject
     MyCounterBean counter;
     
-    private int processCount = 0;
+    private int cnt = 0;
+    
+    public SleepyBatchlet() {
+    	this.date = System.nanoTime();
+    }
     
     /**
      * Main entry point.
@@ -74,8 +86,9 @@ public class SleepyBatchlet extends AbstractBatchlet {
     @Override
     public String process() throws Exception {
 
-        log("process", "Bean cnt = " + (counter != null ? counter.getCount() : "null"));
-        log("process", "processCount = " + ++ processCount);
+        log("process", "cnt = " + ++ cnt);
+        log("process", "batchlet date = " + date);
+        counter.getCount();
 
         if (sleepTimeSecondsProperty != null) {
             sleepTime_s = Integer.parseInt(sleepTimeSecondsProperty);
@@ -104,5 +117,17 @@ public class SleepyBatchlet extends AbstractBatchlet {
         stopRequested = true;
     }
 
+    public int getCount() {
+        log("in batchlet", "cnt = " + ++ cnt);
+    	return cnt;
+    }
+
+	public long getDate() {
+		return date;
+	}
+
+	public void setDate(long date) {
+		this.date = date;
+	}
 }
 
