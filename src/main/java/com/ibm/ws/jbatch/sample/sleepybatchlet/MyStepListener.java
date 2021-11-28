@@ -15,18 +15,18 @@ public class MyStepListener extends AbstractStepListener {
 		System.out.println("SKSK: in step listener , cnt = " + ++count);
 	}
 	
-    @Inject SleepyBatchlet batchlet;
+//    @Inject SleepyBatchlet batchlet;
     
 	@Override
 	public void beforeStep() throws Exception {
 		System.out.println("SKSK: in step listener before,  cnt = " + ++count);
-		batchlet.getCount();
-		System.out.println("SKSK: in step listener before,  date =   " + batchlet.getDate());
+//		batchlet.getCount();
+//		System.out.println("SKSK: in step listener before,  date =   " + batchlet.getDate());
 	}
 
 	@Override
 	public void afterStep() throws Exception {
 		System.out.println("SKSK: in step listener after, cnt = " + ++count);
-		batchlet.getCount();
+//		batchlet.getCount();
 	}
 }

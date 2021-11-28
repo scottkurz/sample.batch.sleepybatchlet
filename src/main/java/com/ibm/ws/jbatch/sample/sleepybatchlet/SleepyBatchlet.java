@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 import javax.batch.api.AbstractBatchlet;
 import javax.batch.api.BatchProperty;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -39,6 +40,7 @@ import javax.inject.Named;
 //@ApplicationScoped
 @Dependent
 @Named("SB")
+//@DebugMode
 public class SleepyBatchlet extends AbstractBatchlet {
 
     private final static Logger logger = Logger.getLogger(SleepyBatchlet.class.getName());
@@ -129,5 +131,12 @@ public class SleepyBatchlet extends AbstractBatchlet {
 	public void setDate(long date) {
 		this.date = date;
 	}
+	
+    @Produces
+    @Dependent
+    public SleepyBatchletChild getChild() {
+
+    	return new SleepyBatchletChild();
+    }
 }
 
