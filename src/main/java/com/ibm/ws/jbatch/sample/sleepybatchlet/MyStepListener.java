@@ -16,6 +16,7 @@ public class MyStepListener extends AbstractStepListener {
 	}
 	
 //    @Inject SleepyBatchlet batchlet;
+    @Inject MyCounterBean counter;
     
 	@Override
 	public void beforeStep() throws Exception {

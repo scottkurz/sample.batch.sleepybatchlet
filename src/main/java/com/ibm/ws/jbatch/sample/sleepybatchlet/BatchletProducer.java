@@ -25,7 +25,6 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
-
 @Dependent
 public class BatchletProducer {
 

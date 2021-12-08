@@ -26,8 +26,11 @@ import java.util.logging.Logger;
 
 import javax.batch.api.AbstractBatchlet;
 import javax.batch.api.BatchProperty;
+import javax.batch.runtime.context.StepContext;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.CDI;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -74,7 +77,13 @@ public class SleepyBatchlet extends AbstractBatchlet {
     String aa;
 
     @Inject
+    StepContext stepCtx;
+
+    @Inject
     MyCounterBean counter;
+    
+    @Inject
+    AABean aabean;
     
     private int cnt = 0;
     
@@ -90,7 +99,9 @@ public class SleepyBatchlet extends AbstractBatchlet {
 
         log("process", "cnt = " + ++ cnt);
         log("process", "batchlet date = " + date);
+        log("process", "step name = " + stepCtx.getStepName());
         counter.getCount();
+        aabean.getCount();
 
         if (sleepTimeSecondsProperty != null) {
             sleepTime_s = Integer.parseInt(sleepTimeSecondsProperty);
@@ -103,6 +114,11 @@ public class SleepyBatchlet extends AbstractBatchlet {
             log("process", "[" + i + "] sleeping for a second...");
             Thread.sleep(1 * 1000);
         }
+
+		Instance<String> myBatchProp = CDI.current().select(String.class, new BatchPropertyLiteral("aa"));
+		String mbpStr = myBatchProp.get();
+
+		System.out.println("SKSK: in SleepyBatchlet mbpStr " + mbpStr);
 
         String exitStatus = "SleepyBatchlet:i=" + i + ";stopRequested=" + stopRequested;
         log("process", "exit. exitStatus: " + exitStatus);
@@ -134,6 +150,7 @@ public class SleepyBatchlet extends AbstractBatchlet {
 	
     @Produces
     @Dependent
+    @DebugMode
     public SleepyBatchletChild getChild() {
 
     	return new SleepyBatchletChild();

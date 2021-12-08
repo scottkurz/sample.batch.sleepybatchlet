@@ -24,6 +24,10 @@
 	<step id="step1" next="step2">
 	    <listeners>
             <listener ref="com.ibm.ws.jbatch.sample.sleepybatchlet.MyStepListener"/>
+            <properties>
+                <property name="mm" value="mm44"/>
+            </properties>
+            <listener ref="com.ibm.ws.jbatch.sample.sleepybatchlet.MyNonBeanStepListener"/>
         </listeners>
 		<batchlet ref="com.ibm.ws.jbatch.sample.sleepybatchlet.SleepyBatchlet" >
 
@@ -31,8 +35,8 @@
 		<batchlet ref="SB">
 -->
             <properties>
+                <property name="aa" value="#{jobParameters['aap1']}" />
                 <property name="sleep.time.seconds" value="#{jobParameters['sleep.time.seconds']}" />
-                <property name="aa" value="11" />
             </properties>
         </batchlet>
 	</step>
@@ -42,6 +46,7 @@
         </listeners>
 		<batchlet ref="SB">
             <properties>
+                <property name="aa" value="#{jobParameters['aap2']}" />
                 <property name="sleep.time.seconds" value="2" />
             </properties>
         </batchlet>
