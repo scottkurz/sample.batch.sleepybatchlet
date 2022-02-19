@@ -43,11 +43,11 @@ import javax.inject.Named;
  */
 //@ApplicationScoped
 @Dependent
-//@Named("SB")
+@Named("SB2")
 //@DebugMode
-public class SleepyBatchlet extends AbstractBatchlet {
+public class SB2 extends AbstractBatchlet {
 
-    private final static Logger logger = Logger.getLogger(SleepyBatchlet.class.getName());
+    private final static Logger logger = Logger.getLogger(SB2.class.getName());
 
     /**
      * Logging helper.
@@ -94,7 +94,7 @@ public class SleepyBatchlet extends AbstractBatchlet {
     
     private int cnt = 0;
     
-    public SleepyBatchlet() {
+    public SB2() {
     	this.date = System.nanoTime();
     }
     @Inject
@@ -102,7 +102,6 @@ public class SleepyBatchlet extends AbstractBatchlet {
     	this.jobCtx = jc;
     }
     
-    @Inject JobContext jbCtx;
     /**
      * Main entry point.
      */
@@ -110,7 +109,6 @@ public class SleepyBatchlet extends AbstractBatchlet {
     public String process() throws Exception {
 
         log("process", jobCtx.getJobName());
-        //log("process", jobCtx.getJobName());
         log("process", "aa = " + aa + ", " + aa.get());
         log("process", "aaa = " + aaa);
         log("process", "cnt = " + ++ cnt);

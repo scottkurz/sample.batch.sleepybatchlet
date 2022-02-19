@@ -20,20 +20,9 @@
  - 
  - All Rights Reserved. Licensed Materials - Property of IBM.  
  -->
-<job id="sleepy-batchlet" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+<job id="sb" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
 	<step id="step1" next="step2">
-	    <listeners>
-            <listener ref="com.ibm.ws.jbatch.sample.sleepybatchlet.MyStepListener"/>
-            <properties>
-                <property name="mm" value="mm44"/>
-            </properties>
-            <listener ref="com.ibm.ws.jbatch.sample.sleepybatchlet.MyNonBeanStepListener"/>
-        </listeners>
 		<batchlet ref="com.ibm.ws.jbatch.sample.sleepybatchlet.SleepyBatchlet" >
-
-        <!--  
-		<batchlet ref="SB">
--->
             <properties>
                 <property name="aa" value="#{jobParameters['aap1']}" />
                 <property name="aaa" value="444"/>
@@ -42,9 +31,6 @@
         </batchlet>
 	</step>
 	<step id="step2">
-	    <listeners>
-            <listener ref="com.ibm.ws.jbatch.sample.sleepybatchlet.MyStepListener"/>
-        </listeners>
 		<batchlet ref="SB">
             <properties>
                 <property name="aa" value="#{jobParameters['aap2']}" />

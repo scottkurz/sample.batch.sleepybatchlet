@@ -26,7 +26,6 @@ import java.util.logging.Logger;
 
 import javax.batch.api.AbstractBatchlet;
 import javax.batch.api.BatchProperty;
-import javax.batch.runtime.context.JobContext;
 import javax.batch.runtime.context.StepContext;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Instance;
@@ -41,20 +40,15 @@ import javax.inject.Named;
  * the default is 15 seconds.
  *
  */
-//@ApplicationScoped
-@Dependent
-//@Named("SB")
-//@DebugMode
-public class SleepyBatchlet extends AbstractBatchlet {
+public class SleepyNonBeanBatchlet extends AbstractBatchlet {
 
-    private final static Logger logger = Logger.getLogger(SleepyBatchlet.class.getName());
+    private final static Logger logger = Logger.getLogger(SleepyNonBeanBatchlet.class.getName());
 
     /**
      * Logging helper.
      */
     protected static void log(String method, Object msg) {
-        System.out.println("SleepyBatchlet: " + method + ": " + String.valueOf(msg));
-        // logger.info("SleepyBatchlet: " + method + ": " + String.valueOf(msg));
+        System.out.println("SleepyNonBeanBatchlet: " + method + ": " + String.valueOf(msg));
     }
 
     /**
@@ -73,51 +67,22 @@ public class SleepyBatchlet extends AbstractBatchlet {
     String sleepTimeSecondsProperty = "7";
     private int sleepTime_s = 15; 
 
-    @Inject
-    @BatchProperty(name = "aa")
-    Instance<String> aa;
 
-    @Inject
-    @BatchProperty(name = "aaa")
-    String aaa;
 
-    @Inject
-    StepContext stepCtx;
-
-    JobContext jobCtx;
-
-    @Inject
-    MyCounterBean counter;
-    
-    @Inject
-    AABean aabean;
-    
-    private int cnt = 0;
-    
-    public SleepyBatchlet() {
+    public SleepyNonBeanBatchlet() {
     	this.date = System.nanoTime();
     }
-    @Inject
-    public void setJC(JobContext jc) {
-    	this.jobCtx = jc;
-    }
     
-    @Inject JobContext jbCtx;
     /**
      * Main entry point.
      */
     @Override
     public String process() throws Exception {
 
-        log("process", jobCtx.getJobName());
-        //log("process", jobCtx.getJobName());
-        log("process", "aa = " + aa + ", " + aa.get());
-        log("process", "aaa = " + aaa);
-        log("process", "cnt = " + ++ cnt);
+		Instance<String> aa = CDI.current().select(String.class, new BatchPropertyLiteral("aa"));
+		String aaStr = aa.get();
+        log("process", "aa = " + aaStr);
         log("process", "batchlet date = " + date);
-        log("process", "step name = " + stepCtx.getStepName());
-        counter.getCount();
-        aabean.getCount();
 
         if (sleepTimeSecondsProperty != null) {
             sleepTime_s = Integer.parseInt(sleepTimeSecondsProperty);
@@ -131,13 +96,10 @@ public class SleepyBatchlet extends AbstractBatchlet {
             Thread.sleep(1 * 1000);
         }
 
-//		Instance<String> myBatchProp = CDI.current().select(String.class, new BatchPropertyLiteral("aa"));
-//		String mbpStr = myBatchProp.get();
-//
-//		System.out.println("SKSK: in SleepyBatchlet mbpStr " + mbpStr);
+        /*
+		*/
 
-        jobCtx.setExitStatus("YES");
-        String exitStatus = "SleepyBatchlet:i=" + i + ";stopRequested=" + stopRequested;
+        String exitStatus = "SleepyNonBeanBatchlet=" + i + ";stopRequested=" + stopRequested;
         log("process", "exit. exitStatus: " + exitStatus);
 
         return exitStatus;
@@ -152,10 +114,6 @@ public class SleepyBatchlet extends AbstractBatchlet {
         stopRequested = true;
     }
 
-    public int getCount() {
-        log("in batchlet", "cnt = " + ++ cnt);
-    	return cnt;
-    }
 
 	public long getDate() {
 		return date;

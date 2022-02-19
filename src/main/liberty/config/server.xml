@@ -19,7 +19,10 @@
                   httpPort="9080"
                   httpsPort="9443"/>
 
-     <logging traceSpecification="BonusPayout=finer:com.ibm.ws.batch.JobLogger=finest:com.ibm.jbatch.container.services.impl.*=all:com.ibm.ws.jbatch.*=fine:RRA=fine:*=info:JCDI=all:com.ibm.ws.webbeans*=all:org.apache.webbeans*=all:org.jboss.weld*=all:com.ibm.ws.cdi*=all:MetaData=all:Injection=all::com.ibm.ws.wswebcontainer*=all"/>
+    <!--
+     <logging traceSpecification="BonusPayout=finer:com.ibm.ws.batch.JobLogger=finest:com.ibm.jbatch.container.services.impl.*=all:com.ibm.ws.jbatch.*=finest:com.ibm.ws.jbatch.cdi.*=finest:RRA=fine:*=info:JCDI=all:com.ibm.ws.webbeans*=all:org.apache.webbeans*=all:org.jboss.weld*=all:com.ibm.ws.cdi*=all:MetaData=all:Injection=all::com.ibm.ws.wswebcontainer*=all"/>
+    -->
+     <logging traceSpecification="BonusPayout=finer:com.ibm.ws.batch.JobLogger=finest:com.ibm.jbatch.*=all:com.ibm.ws.jbatch.*=all:JCDI=all:org.jboss.weld*=all:com.ibm.ws.cdi.*=all:MetaData=all:Injection=all" maxFiles="20"/>
      
 
    <administrator-role>

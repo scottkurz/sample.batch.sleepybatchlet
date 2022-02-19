@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 
 import javax.batch.api.AbstractBatchlet;
 import javax.batch.api.BatchProperty;
+import javax.batch.runtime.context.JobContext;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -40,7 +41,11 @@ import javax.inject.Named;
 @Dependent
 public class SleepyBatchletChild extends SleepyBatchlet {
 
-    private final static Logger logger = Logger.getLogger(SleepyBatchletChild.class.getName());
+    public SleepyBatchletChild() {
+    	super();
+	}
+
+	private final static Logger logger = Logger.getLogger(SleepyBatchletChild.class.getName());
 
 }
 

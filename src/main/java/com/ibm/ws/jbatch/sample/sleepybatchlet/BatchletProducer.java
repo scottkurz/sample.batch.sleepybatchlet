@@ -16,14 +16,10 @@
  */
 package com.ibm.ws.jbatch.sample.sleepybatchlet;
 
-import java.util.List;
-
-import javax.batch.api.BatchProperty;
 import javax.batch.runtime.context.JobContext;
-import javax.batch.runtime.context.StepContext;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.InjectionPoint;
+import javax.inject.Named;
 
 @Dependent
 public class BatchletProducer {
@@ -31,9 +27,12 @@ public class BatchletProducer {
 
     @Produces
     @Dependent
-    public SleepyBatchlet getSleepyBatchlet() {
+    @Named("SB")
+    public SleepyBatchlet getSleepyBatchlet(JobContext jc) {
 
-    	return new SleepyBatchletChild();
+    	SleepyBatchlet sb = new SleepyBatchletChild();
+    	sb.setJC(jc);
+    	return sb;
     }
 
 
