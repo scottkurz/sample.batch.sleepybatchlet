@@ -13,11 +13,20 @@
     <name>SleepyBatchletSample</name>
 
     <properties>
+            		<derby.version>10.13.1.1</derby.version>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
     <dependencies>
+        		<!-- To use in copyDependencies -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>${derby.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>
@@ -56,7 +65,16 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>3.5.1</version>
+            <configuration>
+                <copyDependencies>
+                    <location>../../shared/resources</location>
+						<dependency>
+							<groupId>org.apache.derby</groupId>
+							<artifactId>derby</artifactId>
+						</dependency>
+                </copyDependencies>
+            </configuration>
             </plugin>
         </plugins>
     </build>

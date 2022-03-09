@@ -3,11 +3,12 @@
     <featureManager>
         <feature>batchManagement-1.0</feature>
         <feature>localConnector-1.0</feature>
+        <!--
+        <feature>mpOpenAPI-2.0</feature>
         <feature>appSecurity-2.0</feature>
-        <feature>mpHealth-2.2</feature>
         <feature>cdi-2.0</feature>
-        <!-- Use for validation URLs like: https://localhost:9443/ibm/api/validation/dataSource/batchDB -->
         <feature>restConnector-2.0</feature>
+        -->
     </featureManager>
 
     <httpEndpoint id="defaultHttpEndpoint"
@@ -21,6 +22,16 @@
       <user>bob</user>
    </administrator-role>
 
+
+    <dataSource id="batchDB" type="javax.sql.XADataSource">
+        <jdbcDriver libraryRef="DerbyLib"/>
+        <properties createDatabase="create" databaseName="${db.url}" user="user" password="pass"/>
+    </dataSource>
+
+    <library id="DerbyLib">
+        <fileset dir="${shared.resource.dir}" includes="derby*jar"/>
+    </library>
+       
     <databaseStore dataSourceRef="batchDB" id="BatchDatabaseStore" schema="test" tablePrefix="AB">
         <persistenceProperties eclipselink.logging.level="FINER" javax.persistence.schema-generation.create-database-schemas="true"/>
     </databaseStore>
