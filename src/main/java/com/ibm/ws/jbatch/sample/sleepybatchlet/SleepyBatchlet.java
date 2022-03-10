@@ -83,8 +83,8 @@ public class SleepyBatchlet extends AbstractBatchlet {
         String exitStatus = "SleepyBatchlet:i=" + i + ";stopRequested=" + stopRequested;
         log("process", "exit. exitStatus: " + exitStatus);
 
-    	throw new RuntimeException();
-//        return exitStatus;
+//    	throw new RuntimeException();
+        return exitStatus;
     }
 
     /**
