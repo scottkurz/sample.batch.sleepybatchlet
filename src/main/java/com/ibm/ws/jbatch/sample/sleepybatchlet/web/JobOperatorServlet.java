@@ -46,6 +46,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.HttpMethodConstraint;
+import javax.servlet.annotation.ServletSecurity;
+
 /**
  * This servlet is a simple wrapper around the JobOperator API.
  *
@@ -53,6 +57,8 @@ import javax.servlet.http.HttpServletResponse;
  * and get status of jobs.
  */
 @WebServlet(urlPatterns = { "/joboperator" })
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"users"},
+        transportGuarantee = ServletSecurity.TransportGuarantee.CONFIDENTIAL))
 public class JobOperatorServlet extends HttpServlet {
 
     protected final static Logger logger = Logger.getLogger(JobOperatorServlet.class.getName());

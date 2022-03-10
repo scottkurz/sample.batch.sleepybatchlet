@@ -4,10 +4,24 @@
         <feature>batchManagement-1.0</feature>
         <feature>localConnector-1.0</feature>
         <!--
-        <feature>mpOpenAPI-2.0</feature>
         <feature>appSecurity-2.0</feature>
+  -->
+        
+        
+        
+        
+                <feature>jsp-2.3</feature>
+        <feature>appSecurity-3.0</feature>
+        <feature>transportSecurity-1.0</feature>
+        <feature>mpConfig-2.0</feature>
+        <feature>jaxrsClient-2.1</feature>
+        <feature>cdi-2.0</feature>
+        <feature>jsonb-1.0</feature>
+        <!--
+        <feature>mpOpenAPI-2.0</feature>
         <feature>cdi-2.0</feature>
         <feature>restConnector-2.0</feature>
+
         -->
     </featureManager>
 
@@ -46,6 +60,16 @@
         <user name="sam" password="sampwd"/>
     </basicRegistry>
 
+    <!-- tag::webApplication[] -->
+    <webApplication location="SleepyBatchletSample-1.0.war"
+                    contextRoot="SleepyBatchletSample-1.0">
+        <application-bnd>
+            <security-role name="users">
+                <special-subject type="ALL_AUTHENTICATED_USERS"/>
+            </security-role>
+        </application-bnd>
+    </webApplication>
+    
     <authorization-roles id="com.ibm.ws.batch">
         <security-role name="batchAdmin">
             <user name="bob"/>
